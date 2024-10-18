@@ -96,6 +96,7 @@ void GameManager::loseLife(float dt)
 
     // TODO screen shake.
     screenShake = true;
+    originalView = getWindow()->getView();
 }
 
 void GameManager::render()
@@ -130,6 +131,7 @@ void GameManager::UpdateScreenShake(float dt) {
     if (shakeNumber == 3) {
         shakeNumber = 0;
         screenShake = false;
+        getWindow()->setView(originalView);
         return;
     }
    
@@ -143,21 +145,22 @@ void GameManager::UpdateScreenShake(float dt) {
         shakeMoveTimer = shakeMoveCooldown;
     }
 
-    //check if we are over our screen shake limit
+    //reset shake intervals and change direction
     if (shakeIntervalNumber > 10) {
         shakeIntervalNumber = 0;
         isShakeMovingLeft = !isShakeMovingLeft;
+        shakeNumber++;
     }
 
     auto win = getWindow();
     auto view = win->getView();
 
     if (isShakeMovingLeft) {
-        view.move(10, 0);
+        view.move(2, 0.5);
         win->setView(view);
     }
     else {
-        view.move(-10, 0);
+        view.move(-2, -0.5);
         win->setView(view);
     }
     

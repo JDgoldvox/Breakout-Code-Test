@@ -53,10 +53,12 @@ private:
 
     //
     int shakeIntervalNumber = 0;
-    int shakeNumber = 3;
+    int shakeNumber = 0;
     bool screenShake = false;
     void UpdateScreenShake(float dt);
     float shakeMoveTimer = 0;
     float shakeMoveCooldown = 0.01;
     bool isShakeMovingLeft = true;
+    sf::View originalView;
+    
 };
