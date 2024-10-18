@@ -64,7 +64,7 @@ void Ball::update(float dt)
     {
         _sprite.setPosition(0, 300);
         _direction = { 1, 1 };
-        _gameManager->loseLife();
+        _gameManager->loseLife(dt);
     }
 
     // collision with paddle

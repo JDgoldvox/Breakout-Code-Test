@@ -15,7 +15,7 @@ public:
     GameManager(sf::RenderWindow* window);
     void initialize();
     void update(float dt);
-    void loseLife();
+    void loseLife(float dt);
     void render();
     void levelComplete();
     void powerupEffect(POWERUPS pu, float t);
@@ -49,4 +49,14 @@ private:
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn
+
+
+    //
+    int shakeIntervalNumber = 0;
+    int shakeNumber = 3;
+    bool screenShake = false;
+    void UpdateScreenShake(float dt);
+    float shakeMoveTimer = 0;
+    float shakeMoveCooldown = 0.01;
+    bool isShakeMovingLeft = true;
 };

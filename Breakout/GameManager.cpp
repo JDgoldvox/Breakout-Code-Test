@@ -85,14 +85,17 @@ void GameManager::update(float dt)
     _paddle->update(dt);
     _ball->update(dt);
     _powerupManager->update(dt);
+
+    UpdateScreenShake(dt);
 }
 
-void GameManager::loseLife()
+void GameManager::loseLife(float dt)
 {
     _lives--;
     _ui->lifeLost(_lives);
 
     // TODO screen shake.
+    screenShake = true;
 }
 
 void GameManager::render()
@@ -115,3 +118,48 @@ UI* GameManager::getUI() const { return _ui; }
 Paddle* GameManager::getPaddle() const { return _paddle; }
 BrickManager* GameManager::getBrickManager() const { return _brickManager; }
 PowerupManager* GameManager::getPowerupManager() const { return _powerupManager; }
+
+void GameManager::UpdateScreenShake(float dt) {
+    
+   //no screen shake = return
+    if (!screenShake) {
+        return;
+    }
+    
+    //limit number of shakes
+    if (shakeNumber == 3) {
+        shakeNumber = 0;
+        screenShake = false;
+        return;
+    }
+   
+    //check if dt has reached value
+    if (shakeMoveTimer > 0)
+    {
+        shakeMoveTimer -= dt;
+        return;
+    }
+    else {
+        shakeMoveTimer = shakeMoveCooldown;
+    }
+
+    //check if we are over our screen shake limit
+    if (shakeIntervalNumber > 10) {
+        shakeIntervalNumber = 0;
+        isShakeMovingLeft = !isShakeMovingLeft;
+    }
+
+    auto win = getWindow();
+    auto view = win->getView();
+
+    if (isShakeMovingLeft) {
+        view.move(10, 0);
+        win->setView(view);
+    }
+    else {
+        view.move(-10, 0);
+        win->setView(view);
+    }
+    
+    shakeIntervalNumber++;
+}
