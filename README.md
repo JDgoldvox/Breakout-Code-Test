@@ -32,4 +32,6 @@ fire ball (green)
 * Implement commentary with calls to an LLM such as LLama
 
 # Time Details and Changelist
+fixed circular dependency bug (10m)
+Add camera shake when losing a life (2 hrs)
 <Add information to this section about the time you've taken for this task along with a professional changelist.>

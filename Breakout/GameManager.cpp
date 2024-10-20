@@ -94,7 +94,7 @@ void GameManager::loseLife(float dt)
     _lives--;
     _ui->lifeLost(_lives);
 
-    // TODO screen shake.
+    //screen shake
     screenShake = true;
     originalView = getWindow()->getView();
 }

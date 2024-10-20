@@ -25,6 +25,8 @@ public:
     PowerupManager* getPowerupManager() const;
     sf::RenderWindow* getWindow() const;
     UI* getUI() const;
+    
+    void EnableScreenShake(bool b) { screenShake = b; }
 
 
 private:
