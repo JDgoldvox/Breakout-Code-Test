@@ -51,7 +51,7 @@ int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
         brick = _bricks.back();
         _bricks.pop_back();
 
-        //screen shake when breaking brick
+        //screen shake when breaking brick --
         _gameManager->EnableScreenShake(true);
         break;
     }

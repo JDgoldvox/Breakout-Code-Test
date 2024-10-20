@@ -7,7 +7,7 @@
 #include "PowerupManager.h"
 #include "MessagingSystem.h"
 #include "UI.h"
-
+#include "ParticleManager.h"
 
 
 class GameManager {
@@ -48,12 +48,12 @@ private:
     PowerupManager* _powerupManager;
     MessagingSystem* _messagingSystem;
     UI* _ui;
+    ParticleManager* particleManager;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn
 
-
-    //
+    //shake
     int shakeIntervalNumber = 0;
     int shakeNumber = 0;
     bool screenShake = false;

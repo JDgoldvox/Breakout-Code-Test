@@ -16,6 +16,9 @@
     <Filter Include="Powerups">
       <UniqueIdentifier>{f3758f5c-ad80-41b1-a2fb-fb910363ec2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Mine">
+      <UniqueIdentifier>{b937ab2e-24e8-44cf-b85d-c6f1486052af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,6 +66,12 @@
     <ClCompile Include="PowerupFireBall.cpp">
       <Filter>Powerups</Filter>
     </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files\Mine</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleManager.cpp">
+      <Filter>Source Files\Mine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h">
@@ -109,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="PowerupFireBall.h">
       <Filter>Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Source Files\Mine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>Source Files\Mine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

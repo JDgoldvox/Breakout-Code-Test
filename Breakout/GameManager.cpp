@@ -23,9 +23,13 @@ void GameManager::initialize()
     _ball = new Ball(_window, 400.0f, this); 
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
+    particleManager = new ParticleManager(_window, this);
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
+
+    //create pool of particles
+    particleManager->CreateParticles(10);
 }
 
 void GameManager::update(float dt)
@@ -33,10 +37,13 @@ void GameManager::update(float dt)
     _powerupInEffect = _powerupManager->getPowerupInEffect();
     _ui->updatePowerupText(_powerupInEffect);
     _powerupInEffect.second -= dt;
-    
+
+    //for shake
+    originalView = getWindow()->getView();
 
     if (_lives <= 0)
     {
+        UpdateScreenShake(dt); //shake screen when we lost
         _masterText.setString("Game over.");
         return;
     }
@@ -96,7 +103,6 @@ void GameManager::loseLife(float dt)
 
     //screen shake
     screenShake = true;
-    originalView = getWindow()->getView();
 }
 
 void GameManager::render()
@@ -105,6 +111,7 @@ void GameManager::render()
     _ball->render();
     _brickManager->render();
     _powerupManager->render();
+    particleManager->render();
     _window->draw(_masterText);
     _ui->render();
 }
