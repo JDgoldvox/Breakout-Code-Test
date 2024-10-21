@@ -25,6 +25,9 @@ void GameManager::initialize()
     _ball = new Ball(_window, 400.0f, this); 
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
+    
+    cameraShakeManager = new CameraShakeManager(this);
+    cameraShakeManager->SetOriginalView(getWindow()->getView());
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
@@ -39,12 +42,9 @@ void GameManager::update(float dt)
     _ui->updatePowerupText(_powerupInEffect);
     _powerupInEffect.second -= dt;
 
-    //for shake
-    originalView = getWindow()->getView();
-
     if (_lives <= 0)
     {
-        UpdateScreenShake(dt); //shake screen when we lost
+        cameraShakeManager->Update(dt);
         _masterText.setString("Game over.");
         return;
     }
@@ -78,7 +78,6 @@ void GameManager::update(float dt)
     // timer.
     _time += dt;
 
-
     if (_time > _timeLastPowerupSpawned + POWERUP_FREQUENCY && rand()%700 == 0)      // TODO parameterise
     {
         _powerupManager->spawnPowerup();
@@ -95,7 +94,7 @@ void GameManager::update(float dt)
     _powerupManager->update(dt);
 
     particleManager->Update(dt);
-    UpdateScreenShake(dt);
+    cameraShakeManager->Update(dt);
 }
 
 void GameManager::loseLife(float dt)
@@ -104,7 +103,7 @@ void GameManager::loseLife(float dt)
     _ui->lifeLost(_lives);
 
     //screen shake
-    screenShake = true;
+    cameraShakeManager->EnableScreenShake();
 }
 
 void GameManager::render()
@@ -128,50 +127,3 @@ UI* GameManager::getUI() const { return _ui; }
 Paddle* GameManager::getPaddle() const { return _paddle; }
 BrickManager* GameManager::getBrickManager() const { return _brickManager; }
 PowerupManager* GameManager::getPowerupManager() const { return _powerupManager; }
-
-void GameManager::UpdateScreenShake(float dt) {
-    
-   //no screen shake = return
-    if (!screenShake) {
-        return;
-    }
-    
-    //limit number of shakes
-    if (shakeNumber == 3) {
-        shakeNumber = 0;
-        screenShake = false;
-        getWindow()->setView(originalView);
-        return;
-    }
-   
-    //check if dt has reached value
-    if (shakeMoveTimer > 0)
-    {
-        shakeMoveTimer -= dt;
-        return;
-    }
-    else {
-        shakeMoveTimer = shakeMoveCooldown;
-    }
-
-    //reset shake intervals and change direction
-    if (shakeIntervalNumber > 10) {
-        shakeIntervalNumber = 0;
-        isShakeMovingLeft = !isShakeMovingLeft;
-        shakeNumber++;
-    }
-
-    auto win = getWindow();
-    auto view = win->getView();
-
-    if (isShakeMovingLeft) {
-        view.move(2, 0.5);
-        win->setView(view);
-    }
-    else {
-        view.move(-2, -0.5);
-        win->setView(view);
-    }
-    
-    shakeIntervalNumber++;
-}

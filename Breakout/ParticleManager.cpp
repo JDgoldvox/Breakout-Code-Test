@@ -20,7 +20,6 @@ void ParticleManager::CreateParticles(int number)
     }
 
     std::cout << "Number of particles: " << particles.size() << std::endl;
-   
 }
 
 void ParticleManager::render()

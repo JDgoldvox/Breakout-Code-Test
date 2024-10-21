@@ -52,10 +52,9 @@ int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
         _bricks.pop_back();
 
         //screen shake when breaking brick --
-        _gameManager->EnableScreenShake(true);
+        _gameManager->getCameraShakeManager()->EnableScreenShake();
 
         //Explode block
-        
         particleManager->TriggerParticleExplosion(ballPosition);
 
         break;

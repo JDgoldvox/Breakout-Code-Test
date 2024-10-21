@@ -8,6 +8,7 @@
 #include "MessagingSystem.h"
 #include "UI.h"
 #include "ParticleManager.h"
+#include "CameraShakeManager.h"
 
 class GameManager {
 public:
@@ -24,10 +25,8 @@ public:
     PowerupManager* getPowerupManager() const;
     sf::RenderWindow* getWindow() const;
     UI* getUI() const;
+    CameraShakeManager* getCameraShakeManager() { return cameraShakeManager; }
     
-    void EnableScreenShake(bool b) { screenShake = b; }
-
-
 private:
     bool _pause;
     float _pauseHold;
@@ -48,18 +47,9 @@ private:
     MessagingSystem* _messagingSystem;
     UI* _ui;
     ParticleManager* particleManager;
+    CameraShakeManager* cameraShakeManager;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn
 
-    //shake
-    int shakeIntervalNumber = 0;
-    int shakeNumber = 0;
-    bool screenShake = false;
-    void UpdateScreenShake(float dt);
-    float shakeMoveTimer = 0;
-    float shakeMoveCooldown = 0.01;
-    bool isShakeMovingLeft = true;
-    sf::View originalView;
-    
 };

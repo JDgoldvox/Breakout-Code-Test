@@ -36,4 +36,8 @@ fixed circular dependency bug (10m)
 Add camera shake when losing a life (2 hrs)
 Added Particle and Particle manager class (1.5 hrs)
 Implemented first iteration of particles (2 hrs)
+Fixed issues with first iteration of particles (1 hr)
 Tweaked particle colors, size and alpha to be random (30m)
+Bug fixing and clean up (1hr)
+
+TOTAL HOURS: 6hrs 40m

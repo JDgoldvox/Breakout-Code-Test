@@ -16,8 +16,11 @@
     <Filter Include="Powerups">
       <UniqueIdentifier>{f3758f5c-ad80-41b1-a2fb-fb910363ec2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Mine">
+    <Filter Include="Source Files\Particles">
       <UniqueIdentifier>{b937ab2e-24e8-44cf-b85d-c6f1486052af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shake">
+      <UniqueIdentifier>{e63a3ba5-aa34-44b4-a787-0e4b6d63f391}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,10 +70,13 @@
       <Filter>Powerups</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">
-      <Filter>Source Files\Mine</Filter>
+      <Filter>Source Files\Particles</Filter>
     </ClCompile>
     <ClCompile Include="ParticleManager.cpp">
-      <Filter>Source Files\Mine</Filter>
+      <Filter>Source Files\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraShakeManager.cpp">
+      <Filter>Source Files\Shake</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,10 +126,13 @@
       <Filter>Powerups</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
-      <Filter>Source Files\Mine</Filter>
+      <Filter>Source Files\Particles</Filter>
     </ClInclude>
     <ClInclude Include="ParticleManager.h">
-      <Filter>Source Files\Mine</Filter>
+      <Filter>Source Files\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraShakeManager.h">
+      <Filter>Source Files\Shake</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
