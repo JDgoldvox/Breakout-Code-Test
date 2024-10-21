@@ -9,7 +9,6 @@
 #include "UI.h"
 #include "ParticleManager.h"
 
-
 class GameManager {
 public:
     GameManager(sf::RenderWindow* window);

@@ -17,19 +17,21 @@ GameManager::GameManager(sf::RenderWindow* window)
 
 void GameManager::initialize()
 {
+    particleManager = new ParticleManager(_window, this);
+
     _paddle = new Paddle(_window);
-    _brickManager = new BrickManager(_window, this);
+    _brickManager = new BrickManager(_window, this, particleManager);
     _messagingSystem = new MessagingSystem(_window);
     _ball = new Ball(_window, 400.0f, this); 
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
-    particleManager = new ParticleManager(_window, this);
+    
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
 
     //create pool of particles
-    particleManager->CreateParticles(10);
+    particleManager->CreateParticles(100);
 }
 
 void GameManager::update(float dt)
@@ -93,6 +95,7 @@ void GameManager::update(float dt)
     _ball->update(dt);
     _powerupManager->update(dt);
 
+    particleManager->Update(dt);
     UpdateScreenShake(dt);
 }
 

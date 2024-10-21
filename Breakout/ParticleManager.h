@@ -3,8 +3,10 @@
 #include "Particle.h"
 #include <SFML/Graphics.hpp>
 
-using std::vector;
+#include <iostream>
+using namespace std;
 
+using std::vector;
 
 class GameManager;
 
@@ -15,6 +17,8 @@ public:
     ~ParticleManager();
     void CreateParticles(int number);
     void render();
+    void Update(float dt);
+    void TriggerParticleExplosion(sf::Vector2f pos);
 
 private:
     std::vector<Particle*> particles;

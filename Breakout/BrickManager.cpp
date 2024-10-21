@@ -1,8 +1,8 @@
 #include "BrickManager.h"
 #include "GameManager.h"
 
-BrickManager::BrickManager(sf::RenderWindow* window, GameManager* gameManager)
-    : _window(window), _gameManager(gameManager)
+BrickManager::BrickManager(sf::RenderWindow* window, GameManager* gameManager, ParticleManager* particleManagerIn)
+    : _window(window), _gameManager(gameManager), particleManager(particleManagerIn)
 {
 }
 
@@ -53,6 +53,12 @@ int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
 
         //screen shake when breaking brick --
         _gameManager->EnableScreenShake(true);
+
+        //Explode block
+        
+        particleManager->TriggerParticleExplosion(ballPosition);
+        cout << "brick collided: " << brick.getBounds().getPosition().x << "/ " << brick.getBounds().getPosition().y << std::endl;
+
         break;
     }
     if (_bricks.size() == 0)
