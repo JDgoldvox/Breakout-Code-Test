@@ -34,4 +34,6 @@ fire ball (green)
 # Time Details and Changelist
 fixed circular dependency bug (10m)
 Add camera shake when losing a life (2 hrs)
-<Add information to this section about the time you've taken for this task along with a professional changelist.>
+Added Particle and Particle manager class (1.5 hrs)
+Implemented first iteration of particles (2 hrs)
+Tweaked particle colors, size and alpha to be random (30m)

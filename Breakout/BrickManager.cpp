@@ -57,7 +57,6 @@ int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
         //Explode block
         
         particleManager->TriggerParticleExplosion(ballPosition);
-        cout << "brick collided: " << brick.getBounds().getPosition().x << "/ " << brick.getBounds().getPosition().y << std::endl;
 
         break;
     }

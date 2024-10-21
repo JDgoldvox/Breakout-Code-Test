@@ -25,13 +25,12 @@ void GameManager::initialize()
     _ball = new Ball(_window, 400.0f, this); 
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
-    
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f);
 
     //create pool of particles
-    particleManager->CreateParticles(100);
+    particleManager->CreateParticles(30 * 8);
 }
 
 void GameManager::update(float dt)
@@ -110,12 +109,12 @@ void GameManager::loseLife(float dt)
 
 void GameManager::render()
 {
+    particleManager->render();
     _paddle->render();
-    _ball->render();
     _brickManager->render();
     _powerupManager->render();
-    particleManager->render();
     _window->draw(_masterText);
+    _ball->render();
     _ui->render();
 }
 

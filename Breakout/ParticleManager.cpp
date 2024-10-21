@@ -8,17 +8,17 @@ ParticleManager::ParticleManager(sf::RenderWindow* window, GameManager* gameMana
 }
 
 ParticleManager::~ParticleManager() {
-
+    for (auto element : particles) {
+        delete element;
+    }
 }
 
 void ParticleManager::CreateParticles(int number)
 {
-    // Directly use the vector without dynamic allocation
     for (int i = 0; i < number; i++) {
-        particles.emplace_back(new Particle(200, 200, 20));    // Add particle to the vector
+        particles.emplace_back(new Particle(200, 200, 1));    // Add particle to the vector
     }
 
-    // Optional: Check if particles were added
     std::cout << "Number of particles: " << particles.size() << std::endl;
    
 }
@@ -37,7 +37,8 @@ void ParticleManager::render()
 
 void ParticleManager::Update(float dt) {
     for (auto& particle : particles) {
-        if(particle->GetIsActive()) {
+        if (particle->GetIsActive())
+        {
             particle->Update(dt);
         }
     }
@@ -46,6 +47,7 @@ void ParticleManager::Update(float dt) {
 void ParticleManager::TriggerParticleExplosion(sf::Vector2f pos) 
 {
     int successfulParticles = 0;
+
     for (auto& particle : particles) {
 
         //ignore active particles
@@ -57,9 +59,12 @@ void ParticleManager::TriggerParticleExplosion(sf::Vector2f pos)
         successfulParticles++;
 
         //break if we have 10 particles
-        if (successfulParticles == 10) {
-            cout << "10\n";
+        if (successfulParticles == 30) {
             break;
         }
+    }
+
+    if (successfulParticles != 10) {
+        cout << "did nothing since not enough non active particles\n";
     }
 }
